@@ -46,6 +46,16 @@ config.browserify2 = {
   }
 };
 
+config.jshint = {
+  options: {
+    jshintrc: '.jshintrc'
+  },
+  all: [
+    'Gruntfile.js',
+    'src/**/*.js'
+  ]
+};
+
 //
 // Static files
 //
@@ -82,7 +92,6 @@ config.watch = {
 //
 // Unit tests
 //
-
 config.simplemocha = {
   options: {
     globals: ['should', 'sinon'],
@@ -103,7 +112,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('default', 'build');
-  grunt.registerTask('build', ['stylus', 'browserify2:admin', 'browserify2:device', 'browserify2:game', 'copy']);
-  grunt.registerTask('test',  'simplemocha');
+  grunt.registerTask('build', ['jshint', 'stylus', 'browserify2:admin', 'browserify2:device', 'browserify2:game', 'copy']);
+  grunt.registerTask('test',  ['jshint', 'simplemocha']);
 
 };
