@@ -1,42 +1,43 @@
+'use strict';
+
 var routie = require('../../../3rdparty/routie');
 var player = require('../player');
 var _ = require('underscore');
 var view = require('../../views/register-simple.hbs');
 
-module.exports = function() {
-  
-  if (player.get().id) {
-    return routie.navigate('/wait');
-  }
-  
-  $('#page').attr('class', 'register');
-  $('#page').html(view());
-  
-  $('button').on('click', register);
-  
-};
-
-function giveFeedback(data){
-   _.each(data, function(field, key){
-      field[0].parent().removeClass("error");
-      if (field[2] === false){
-        field[0].parent().addClass("error");
-        field[0].parent().get(0).scrollIntoView()
-      }
-   });
+function go(data) {
+  player.set({
+    id: data.id,
+    name: data.name
+  });
+  routie.navigate('/wait');
 }
 
-function mapData(data){
-  return _.inject(data, function(memo, control, key){
-    var isInvalid = (control.val() === "" || control.val() === "Select Country" || control.val() === "Select Role" );
-    memo[key] = [control, control.val(), !isInvalid];
-    return memo;
-  }, {});
+function error(res) {
+  alert('Error: ' + res);
 }
 
 function validate(data){
   return _.every(data, function(field){
     return field[2];
+  });
+}
+
+function mapData(data){
+  return _.inject(data, function(memo, control, key){
+    var isInvalid = control.val() === '' || control.val() === 'Select Country' || control.val() === 'Select Role';
+    memo[key] = [control, control.val(), !isInvalid];
+    return memo;
+  }, {});
+}
+
+function giveFeedback(data){
+  _.each(data, function(field){
+    field[0].parent().removeClass('error');
+    if (field[2] === false){
+      field[0].parent().addClass('error');
+      field[0].parent().get(0).scrollIntoView();
+    }
   });
 }
 
@@ -57,7 +58,7 @@ function register(e) {
 
   if (dataIsValid){
     var formData = _.inject(mappedData, function(m, field, key){ m[key] = field[1]; return m; }, {});
-    console.log("FIELDS", formData);
+    console.log('FIELDS', formData);
     
     $.ajax({
       type: 'POST',
@@ -69,18 +70,19 @@ function register(e) {
   
   }
   else {
-    giveFeedback(mappedData); 
+    giveFeedback(mappedData);
   }
 }
 
-function go(data) {
-  player.set({
-    id: data.id,
-    name: data.name
-  });
-  routie.navigate('/wait');
-}
-
-function error(res) {
-  alert('Error: ' + res);
-}
+module.exports = function() {
+  
+  if (player.get().id) {
+    return routie.navigate('/wait');
+  }
+  
+  $('#page').attr('class', 'register');
+  $('#page').html(view());
+  
+  $('button').on('click', register);
+  
+};

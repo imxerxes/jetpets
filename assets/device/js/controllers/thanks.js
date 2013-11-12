@@ -1,3 +1,5 @@
+'use strict';
+
 var routie = require('../../../3rdparty/routie');
 var view = require('../../views/thanks.hbs');
 
