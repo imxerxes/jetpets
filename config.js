@@ -4,7 +4,7 @@ config.ask_about_social_networking = true;
 
 config.twitter = {};
 
-config.twitter.consumer_key = process.env.TWITTER_KEY || 'u3XVu0WLRHLfiHiAAOSl3A';
-config.twitter.consumer_secret =  process.env.TWITTER_SECRET || 'R9TdcKXodHCJrwU6EYLkKxDxL3bwpYrWV1xK7MhsU';
+config.twitter.hashtag = "#ThoughtWorks";
+config.twitter.message = "I just scored {0} points on JetPets by @ThoughtWorks. #YOW2013"
 
 module.exports = config;
