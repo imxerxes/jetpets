@@ -1,5 +1,7 @@
 var config = {};
 
+config.game_duration = 5;
+
 config.ask_about_social_networking = true;
 
 config.twitter = {};
