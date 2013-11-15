@@ -67,6 +67,7 @@ config.jshint = {
   },
   all: [
     'Gruntfile.js',
+    'assets/device/**/*.js',
     'src/**/*.js'
   ]
 };
@@ -177,7 +178,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('default', 'build');
-  grunt.registerTask('build', ['jshint', 'stylus', 'browserify2:admin', 'browserify2:device', 'browserify2:game', 'copy']);
+  grunt.registerTask('build', ['stylus', 'browserify2:admin', 'browserify2:device', 'browserify2:game', 'copy']);
   grunt.registerTask('test',  ['jshint', 'simplemocha']);
 
   grunt.registerTask('app', 'Create Heroku app', config.heroku.createApp(grunt));

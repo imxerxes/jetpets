@@ -1,7 +1,17 @@
+'use strict';
+
 var _ = require('underscore');
 var player = null;
 
 var KEY = 'player';
+
+function load() {
+  player = JSON.parse(window.localStorage.getItem(KEY) || '{}');
+}
+
+function save() {
+  window.localStorage.setItem(KEY, JSON.stringify(player));
+}
 
 exports.get = function() {
   if (!player) {
@@ -19,11 +29,3 @@ exports.reset = function() {
   player = null;
   window.localStorage.removeItem(KEY);
 };
-
-function load() {
-  player = JSON.parse(window.localStorage.getItem(KEY) || '{}');
-}
-
-function save() {
-  window.localStorage.setItem(KEY, JSON.stringify(player));
-}

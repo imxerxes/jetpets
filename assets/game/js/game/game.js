@@ -2,6 +2,8 @@ var Sequencer   = require('./sequencer');
 var world       = require('./world');
 var hub         = require('../engine/hub');
 
+var config      = require('../../../../config');
+
 var Ball        = require('./entities/ball');
 var world       = require('./world');
 var ActionText  = require('./entities/action-text');
@@ -35,7 +37,7 @@ function Game(engine, playerInfo) {
       {   name: 'end',      from: ['warmup', 'kickoff', 'play', 'scored'],  to: 'endofmatch'   },
   ];
   
-  this.duration = 45;
+  this.duration = config.game_duration;
   this.timeRemaining = this.duration * 1000;
   this.ballsInPlay = []
   

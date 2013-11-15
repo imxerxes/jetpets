@@ -1,27 +1,10 @@
+'use strict';
+
 var rx = require('rxjs');
 var routie = require('../../../3rdparty/routie');
 var player = require('../player');
 var view = require('../../views/wait.hbs');
 require('../../../3rdparty/rx.zepto');
-
-module.exports = function() {
-  
-  if (player.get().id == undefined) {
-    routie.navigate('/connect');
-  }
-  
-  $('#page').attr('class', 'wait');
-  $('#page').html(view());
-
-  var observable = rx.Observable
-    .interval(3000)
-    .startWith(-1)
-    .selectMany(observableLobby)
-    .skipWhile(gameInProgress)
-    .take(1)
-    .subscribe(switchState, onError);
-
-};
 
 function observableLobby() {
   return $.getJSONAsObservable('/game/status');
@@ -38,3 +21,21 @@ function switchState() {
 function onError() {
   console.log('Game not responding');
 }
+
+module.exports = function() {
+  
+  if (player.get().id === undefined) {
+    routie.navigate('/connect');
+  }
+  
+  $('#page').attr('class', 'wait');
+  $('#page').html(view());
+
+  rx.Observable
+    .interval(3000)
+    .startWith(-1)
+    .selectMany(observableLobby)
+    .skipWhile(gameInProgress)
+    .take(1)
+    .subscribe(switchState, onError);
+};
