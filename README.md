@@ -48,6 +48,10 @@ With the server running, open:
 * [localhost:8080/admin](http://localhost:8080/admin) for administrating players
 * [your-ip-address:8080](http://10.0.0.1:8080/device) on your phone to join the game!
 
+## Social Media Integration
+
+The game can be configured to let users connect with social media after they're done playing. This behavior can be enabled and controlled via the config.js file in the root of the project.
+
 ## Deploying to an external server (ex: Raspberry PI)
 
 The game needs to be built locally first, and the server will just:
