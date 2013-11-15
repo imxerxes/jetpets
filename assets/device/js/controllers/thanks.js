@@ -9,8 +9,8 @@ module.exports = function() {
   $('#page').attr('class', 'thanks');
   $('#page').html(view(config));
 
-  $("#done").click(function(event) {
-  	routie.navigate('/join');
+  $('#done').click(function() {
+    routie.navigate('/join');
   });
 
 };
