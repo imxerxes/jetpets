@@ -8,8 +8,12 @@ module.exports = function() {
   $('#page').attr('class', 'thanks');
   $('#page').html(view());
   
-  setTimeout(function() {
-    routie.navigate('/connect');
-  }, 4000);
-  
+  $("#tweet").click(function(e) {
+  	alert('tweet!');
+  });
+
+  $("#done").click(function(event) {
+  	routie.navigate('/join');
+  });
+
 };

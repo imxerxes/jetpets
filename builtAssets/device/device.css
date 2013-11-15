@@ -4,7 +4,7 @@ input,button,select{background-color:#fff;border:1px solid #000;color:#000;displ
 .field{width:90%;margin:0 auto}
 img{margin:1.5em}
 label{font-family:'Open Sans'}
-.wait-message{font-family:'Open Sans';width:90%;margin:0 auto;text-align:center}
+p{font-family:'Open Sans';margin:0 auto;text-align:center}
 button{width:90%;background-color:#2b9ea6;color:#fff;font-family:'Open Sans';-webkit-border-radius:6px 6px;-moz-border-radius:6px/6px;-webkit-border-radius:6px/6px;border-radius:6px/6px;border:none;margin:1em auto}
 button:hover{background-color:#61ced6}
 .note{font-style:italic;text-align:center}

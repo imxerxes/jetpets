@@ -1,6 +1,7 @@
 'use strict';
 
 var rx = require('rxjs');
+var config = require('../../../../config');
 var routie = require('../../../3rdparty/routie');
 var player = require('../player');
 var view = require('../../views/gamepad.hbs');
@@ -50,7 +51,12 @@ function checkGameStatus(res) {
     }
   } else {
     observable.dispose();
-    routie.navigate('/join');
+    if (config.ask_about_social_networking === true) {
+      routie.navigate('/thanks');
+    }
+    else {
+      routie.navigate('/join');
+    }
   }
 }
 
